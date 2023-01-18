@@ -1,0 +1,92 @@
+body {
+    background-color: black;
+    color: magenta;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#container {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-container {
+    position: absolute;
+}
+
+.player-container iframe {
+    width: 98vw;
+    height: 98vh;
+    margin-left: 1vw;
+    margin-top: 1vh;
+}
+
+#vid-a {
+    opacity: 1;
+    z-index: 2;
+    transition: opacity 15s; 
+}
+
+#vid-b {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 15s;
+}
+
+#vid-a.fade {
+    opacity: 0;
+}
+
+#vid-b.fade {
+    opacity: 0;
+}
+
+#next-overlay {
+    display: flex;
+    position: absolute;
+    opacity: 100;
+    z-index: 10;
+    transition: opacity 1s;
+    bottom: 30px; 
+}
+
+#next-btn {
+    background-color: rgba(10, 0, 10, 0.75);
+    padding: 6px;
+    color: white;
+    border: none;
+}
+
+#next-btn:hover {
+    cursor: pointer;
+}
+
+#next-overlay.fade {
+    opacity: 0;
+    display: none;
+}
+
+#submit-notification {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    z-index: -2;
+    transition: opacity 2s;
+}
+
+#submit-notification.fade-in {
+    display: flex;
+    opacity: 100;
+    z-index: 11;
+}
+
+#user-name-overlay {
+    color: magenta;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
