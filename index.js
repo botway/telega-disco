@@ -4,40 +4,34 @@ import fs from "fs";
 import path from "path";
 import { Telegraf } from "telegraf";
 import { EventEmitter } from 'events';
-
-import * as dotenv from "dotenv";
-dotenv.config();
-
-import JSONdb from "simple-json-db";
-const db = new JSONdb("storage.json");
-
 import { fileURLToPath } from "url";
+import * as dotenv from "dotenv";
+import JSONdb from "simple-json-db";
+
+const db = new JSONdb("storage.json");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+dotenv.config();
 const botApiKey = process.env.TELEGRAM_BOT_TOKEN;
 const telegramAPI = `https://api.telegram.org/bot${botApiKey}`;
 const bot = new Telegraf(botApiKey);
-
 const emitter = new EventEmitter();
-const app = express();
 
 let playlist = [];
 let updates = [];
 
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// if the webhook is enabled, it won't be possible to use telegram REST API
-// domain should be the domain, where your app is hosted
+// enable webhook
 // app.use(await bot.createWebhook({ domain: example.com }));
 
 bot.on("text", ctx => {
     const message = ctx.update.message;
     addToPlaylist(message);
-    const curDB = db.JSON();
-    db.sync({ ...curDB });
     emitter.emit("message", message);
 });
 bot.launch();
@@ -130,7 +124,6 @@ function setPlaylist(data) {
 async function getBotMessages() {
     // only works without webhook enabled
     const data = await got(`${telegramAPI}/getUpdates`);
-    // writeFile(data.body);
     return JSON.parse(data.body).result;
 }
 
