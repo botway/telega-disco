@@ -6,7 +6,7 @@ Created this application for the Christmass party we hosted in 2022. Projected t
 *How to use:*
 1. Cretate your telegram bot as described here https://core.telegram.org/bots#how-do-i-create-a-bot
 2. Copy *Bot API Token* from API Token tab in the bot settings.
-3. Open .env file and paste the token between the qoutes into TELEGRAM_BOT_TOKEN="".
+3. Open .env file and paste the token between the quotes into TELEGRAM_BOT_TOKEN="".
 4. Deploy the code to your hosting. For example, you can fork this repo and directly deploy it to glitch.com as described here https://help.glitch.com/kb/article/20-importing-code-from-github/ (note, that you will have to use glitch environmental variables insted of .env).
 5. Invite your users into the telegram bot and let them paste their favourite YouTube links into it.
 6. For the ease of use you can delete all default bot commands like /start
