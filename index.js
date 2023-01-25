@@ -36,7 +36,7 @@ bot.on("text", ctx => {
 });
 bot.launch();
 
-app.get("/playlist-update", async function (req, res) {
+app.get("/playlist-update", async (req, res) => {
     res.set({
         "Cache-Control": "no-cache",
         "Content-Type": "text/event-stream",
@@ -132,7 +132,7 @@ function handleMultipleLinks(linksStr) {
 }
 
 function extractVidId(url) {
-    var match = url.match(
+    const match = url.match(
         /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/
     );
     return match ? match["1"] : url;

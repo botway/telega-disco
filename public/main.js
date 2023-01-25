@@ -28,8 +28,8 @@ let isFading = false;
 
 vidB.classList.toggle("fade");
 
-const progressSrc = new EventSource("/playlist-update");
-progressSrc.addEventListener("message", (message) => {
+const updateSrc = new EventSource("/playlist-update");
+updateSrc.addEventListener("message", (message) => {
     if (event.data) {
         const result = JSON.parse(event.data);
         userOverlay.classList.add("fade-in");
